@@ -28,8 +28,8 @@ Sistema de gestión para pacientes oncológicos con historias clínicas y recome
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone <tu-repositorio-url>
-   cd OncoAssist
+   git clone https://github.com/LauraValero/patientOncoAssist.git
+   cd patientOncoAssist
    ```
 
 2. **Crear entorno virtual**:
