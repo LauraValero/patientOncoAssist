@@ -1,17 +1,17 @@
-import os
 from typing import Optional
 
 import httpx
 from fastapi import HTTPException, status, Request, Security, Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from .config import AUTH_BASE_URL, AUTH_VALIDATE_PATH
 
 http_bearer = HTTPBearer(auto_error=False)
 
 
 def _get_auth_service_config() -> tuple[Optional[str], str]:
-    base_url = os.getenv("AUTH_BASE_URL")
+    base_url = AUTH_BASE_URL
     print(f"base_url: {base_url}")
-    validate_path = os.getenv("AUTH_VALIDATE_PATH", "/me")
+    validate_path = AUTH_VALIDATE_PATH
     print(f"validate_path: {validate_path}")
     return base_url, validate_path
 

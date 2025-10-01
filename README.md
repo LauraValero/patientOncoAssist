@@ -26,6 +26,8 @@ Sistema de gestión para pacientes oncológicos con historias clínicas y recome
 
 ## Instalación
 
+### Desarrollo Local
+
 1. **Clonar el repositorio**:
    ```bash
    git clone https://github.com/LauraValero/patientOncoAssist.git
@@ -47,12 +49,14 @@ Sistema de gestión para pacientes oncológicos con historias clínicas y recome
    ```
 
 4. **Configurar variables de entorno**:
-   Crear archivo `app/.env`:
+   Crear archivo `.env` en la raíz del proyecto:
    ```env
    SUPABASE_URL=tu_url_de_supabase
    SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key
    AUTH_BASE_URL=https://tu-auth-service.com
-   AUTH_PATH=/me
+   AUTH_VALIDATE_PATH=/me
+   ENVIRONMENT=development
+   DEBUG=True
    ```
 
 5. **Ejecutar la aplicación**:

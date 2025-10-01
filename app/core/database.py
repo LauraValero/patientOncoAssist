@@ -1,26 +1,16 @@
-import os
 import logging
-from pathlib import Path
-from dotenv import load_dotenv
 from supabase import create_client, Client
+from .config import SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-ENV_PATH = BASE_DIR / ".env"
-
-if not ENV_PATH.exists():
-    raise RuntimeError(f"No se encontro el archivo .env en {ENV_PATH}")
-
-load_dotenv(dotenv_path=ENV_PATH)
-
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
-
+# Validar que las variables estén configuradas
 if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY:
-    raise RuntimeError("Faltan credenciales de Supabase en el archivo .env")
+    raise RuntimeError(
+        "Faltan variables de entorno SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY"
+    )
 
 try:
     supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
