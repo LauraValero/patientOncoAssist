@@ -8,7 +8,7 @@ class PatientService:
 
     @staticmethod
     def create_patient(patient: PatientCreate) -> Optional[dict]:
-        res = supabase.table(PatientService.TABLE_NAME).insert(patient.dict()).execute()
+        res = supabase.table(PatientService.TABLE_NAME).insert(patient.model_dump()).execute()
         if res.data:
             return res.data[0]
         return None
@@ -30,7 +30,7 @@ class PatientService:
 
     @staticmethod
     def update_patient(document_id: str, patient_update: PatientUpdate) -> Optional[dict]:
-        res = supabase.table(PatientService.TABLE_NAME).update(patient_update.dict(exclude_unset=True)).eq("document_id", document_id).execute()
+        res = supabase.table(PatientService.TABLE_NAME).update(patient_update.model_dump(exclude_unset=True)).eq("document_id", document_id).execute()
         return res.data[0] if res.data else None
 
     @staticmethod

@@ -51,14 +51,28 @@ def create_patient(
         ...,
         examples={
             "valid": {
-                "summary": "Valid patient",
+                "summary": "Valid patient with all fields",
                 "value": {
                     "document_id": "12345678",
                     "name": "Jane Doe",
                     "age": 42,
+                    "gender": "Female",
+                    "race": "Mestizo",
+                    "region": "Antioquia",
+                    "urban_or_rural": "Urban",
                     "email": "jane.doe@example.com",
                     "phone": "+57 300 123 4567",
                     "address": "Calle 123 #45-67, Bogotá",
+                },
+            },
+            "minimal": {
+                "summary": "Minimal required fields only",
+                "value": {
+                    "document_id": "87654321",
+                    "name": "John Smith",
+                    "age": 35,
+                    "gender": "Male",
+                    "email": "john.smith@example.com",
                 },
             },
             "invalid": {

@@ -31,7 +31,7 @@ class ClinicalHistoryService:
     def create_clinical_history(clinical_history_in: ClinicalHistoryCreate) -> dict:
         response = (
             supabase.table(ClinicalHistoryService.TABLE_NAME)
-            .insert(clinical_history_in.dict())
+            .insert(clinical_history_in.model_dump())
             .execute()
         )
         if response.data:
@@ -42,7 +42,7 @@ class ClinicalHistoryService:
     def update_clinical_history(history_id: int, clinical_history_in: ClinicalHistoryUpdate) -> Optional[dict]:
         response = (
             supabase.table(ClinicalHistoryService.TABLE_NAME)
-            .update(clinical_history_in.dict(exclude_unset=True))
+            .update(clinical_history_in.model_dump(exclude_unset=True))
             .eq("id", history_id)
             .execute()
         )

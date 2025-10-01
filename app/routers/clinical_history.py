@@ -94,15 +94,43 @@ def create_clinical_history(
     clinical_history_in: ClinicalHistoryCreate = Body(
         ...,
         examples={
-            "valid": {
-                "summary": "Valid clinical history",
+            "complete": {
+                "summary": "Complete clinical history with all fields",
                 "value": {
                     "document_id": "12345678",
+                    "family_history": "Yes",
+                    "previous_cancer_history": "No",
+                    "stage_at_diagnosis": "III",
+                    "tumor_aggressiveness": "High",
+                    "colonoscopy_access": "No",
+                    "screening_regularity": "Regular",
+                    "diet_type": "Western",
+                    "bmi": 33.0,
+                    "physical_activity_level": "Low",
+                    "smoking_status": "Never",
+                    "alcohol_consumption": "Low",
+                    "fiber_consumption": "Low",
+                    "insurance_coverage": "Yes",
+                    "time_to_diagnosis": "Delayed",
+                    "treatment_access": "Adequate",
+                    "treatment_id": 10,
+                    "chemotherapy_received": "Yes",
+                    "radiotherapy_received": "No",
+                    "surgery_received": "No",
+                    "treatment_recommendation": "T2",
+                    "follow_up_adherence": "Good",
+                    "recurrence": "No",
+                    "time_to_recurrence": 16
+                },
+            },
+            "minimal": {
+                "summary": "Minimal required fields only",
+                "value": {
+                    "document_id": "87654321",
                     "stage_at_diagnosis": "II",
                     "tumor_aggressiveness": "Medium",
-                    "follow_up_adherence": "Good",
                     "treatment_access": "Adequate",
-                    "treatment_id": 10
+                    "follow_up_adherence": "Good"
                 },
             },
             "invalid": {
