@@ -2,7 +2,6 @@ from pydantic import BaseModel, Field
 from typing import Optional
 from enum import Enum
 from datetime import datetime
-from decimal import Decimal
 
 class StageAtDiagnosis(str, Enum):
     I = "I"
@@ -106,7 +105,7 @@ class ClinicalHistoryBase(BaseModel):
     
     # Lifestyle factors
     diet_type: Optional[DietType] = Field(None, description="Predominant diet type.")
-    bmi: Optional[Decimal] = Field(None, description="Body Mass Index (BMI) value.", ge=0, le=100)
+    bmi: Optional[float] = Field(None, description="Body Mass Index (BMI) value.", ge=0, le=100)
     physical_activity_level: Optional[PhysicalActivityLevel] = Field(None, description="Physical activity level.")
     smoking_status: Optional[SmokingStatus] = Field(None, description="Patient's smoking status.")
     alcohol_consumption: Optional[AlcoholConsumption] = Field(None, description="Level of alcohol consumption.")
@@ -170,7 +169,7 @@ class ClinicalHistoryUpdate(BaseModel):
     colonoscopy_access: Optional[ColonoscopyAccess] = None
     screening_regularity: Optional[ScreeningRegularity] = None
     diet_type: Optional[DietType] = None
-    bmi: Optional[Decimal] = None
+    bmi: Optional[float] = None
     physical_activity_level: Optional[PhysicalActivityLevel] = None
     smoking_status: Optional[SmokingStatus] = None
     alcohol_consumption: Optional[AlcoholConsumption] = None
@@ -206,7 +205,7 @@ class ClinicalHistoryRead(ClinicalHistoryBase):
                 "colonoscopy_access": "No",
                 "screening_regularity": "Regular",
                 "diet_type": "Western",
-                "bmi": 33.0,
+                "bmi": 20.3,
                 "physical_activity_level": "Low",
                 "smoking_status": "Never",
                 "alcohol_consumption": "Low",
