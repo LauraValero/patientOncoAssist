@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import logging
 from app.routers import patient, clinical_history
 
@@ -6,6 +7,21 @@ app = FastAPI(
     title="Oncoassist Patients",
     description="API para gestión de pacientes oncológicos",
     version="1.0.0"
+)
+
+# Configurar CORS
+origins = [
+    "https://onco-care-ai.onrender.com",  # producción
+    "http://localhost:3000",  # desarrollo local
+    "http://127.0.0.1:3000",  # desarrollo local alternativo
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 logging.basicConfig(level=logging.INFO)
